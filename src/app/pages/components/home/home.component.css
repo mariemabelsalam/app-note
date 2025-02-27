@@ -1,0 +1,23 @@
+
+.create {
+    font-size: 13.712px;
+    color: #6c757d;
+}
+
+h3,h2 {
+    color: #2c3e50;
+}
+
+p {
+    color: #4a4a4a;
+}
+.card {
+    border:2px solid #E0E0E0 ;
+    box-shadow: 0px 4px 8px rgba(0,0,0,.1);
+    transition: all .4s;
+    cursor: pointer;
+}
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: opx 6px 12px rgba(0,0,0,.15);
+}

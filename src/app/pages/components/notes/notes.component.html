@@ -1,0 +1,121 @@
+<section class="mt-5">
+    <div class="container">
+        <div class="text-center add">
+            <button type="button" class="btn  text-white" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                add new note
+            </button>
+        </div>
+        <section class="mb-5">
+            <div class="container">
+                <h2 class="text-start fw-bold my-4">My Notes</h2>
+                <div class="row g-4">
+                    @for (note of getAllUserNotes; track $index) {
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card p-3 h-100">
+                            <app-card [note]="note" [home]="false" [notes]="true"></app-card>
+                            <div class="update">
+                                <button class="btn w-100 text-white" data-bs-toggle="modal"
+                                    data-bs-target="#update" (click)="getValue(note)">update</button>
+                            </div>
+                            <div class="delete">
+                                <button class="btn w-100 text-white mt-3"
+                                    (click)=" deleteNote(note._id)">delete</button>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    }
+                </div>
+
+            </div>
+        </section>
+    </div>
+</section>
+
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Note</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form [formGroup]="addForm" (ngSubmit)="submit()">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">title</label>
+                        <input type="text" class="form-control" id="title" formControlName="title">
+                        @let title=addForm.get('title');
+                        @if(title?.touched) {
+                        @if(title?.hasError('required')){
+                        <p class="alert alert-danger fw-medium mt-2" role="alert">title is required</p>
+                        }
+                        }
+                    </div>
+                    <div class="mb-3">
+                        <label for="content" class="form-label">content</label>
+                        <input type="text" class="form-control" id="content" formControlName="content">
+                        @let content=addForm.get('content');
+                        @if(content?.touched) {
+                        @if(content?.hasError('required')){
+                        <p class="alert alert-danger fw-medium mt-2" role="alert">content is required</p>
+                        }
+                        }
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Post</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="update" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="updateLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="updateLabel">Update Note</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form [formGroup]="updateForm" (ngSubmit)="submit2()">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">title</label>
+                        <input type="text" class="form-control" id="title" formControlName="title">
+                        @let updatetitle=addForm.get('title');
+                        @if(updatetitle?.touched) {
+                        @if(title?.hasError('required')){
+                        <p class="alert alert-danger fw-medium mt-2" role="alert">title is required</p>
+                        }
+                        }
+                    </div>
+                    <div class="mb-3">
+                        <label for="content" class="form-label">content</label>
+                        <input type="text" class="form-control" id="content" formControlName="content">
+                        @let updatecontent=addForm.get('content');
+                        @if(updatecontent?.touched) {
+                        @if(updatecontent?.hasError('required')){
+                        <p class="alert alert-danger fw-medium mt-2" role="alert">content is required</p>
+                        }
+                        }
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

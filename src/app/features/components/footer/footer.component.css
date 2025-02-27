@@ -1,0 +1,13 @@
+section {
+    background-color: #3f51bf;
+}
+i {
+    color: #ffc107;
+}
+
+ul li {
+    cursor: pointer;
+}
+ul li:hover {
+    color: #ffc107;
+}

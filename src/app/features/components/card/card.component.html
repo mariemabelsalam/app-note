@@ -1,0 +1,9 @@
+
+    <h3 class="fs-4 fw-medium">Title : </h3>
+    <p> {{note.title}} </p>
+    <h3 class="fs-4 fw-medium">Content</h3>
+    <p>{{note.content.slice(0,100)}}</p>
+    @if(home==true && notes==false) {
+    <p class="create">this note created at : {{note.createdAt | date}}</p>
+    }
+   

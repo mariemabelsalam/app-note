@@ -1,0 +1,47 @@
+<section class="w-50 m-auto my-5">
+    <div class="container">
+        <h2 class="text-center mb-3">login Now</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="submit()">
+           
+            <div class="mb-3">
+                <label for="email" class="form-label">email</label>
+                <input type="email" class="form-control" id="email" formControlName="email">
+                @let email=loginForm.get('email');
+                @if(email?.touched) {
+                @if(email?.hasError('required')){
+                <p class="alert alert-danger fw-medium mt-2" role="alert">email is required</p>
+                }
+                @else if (email?.hasError('email')) {
+                <p class="alert alert-danger fw-medium mt-2" role="alert">email must be valid</p>
+                }
+                }
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">password</label>
+                <input type="password" class="form-control" id="password" formControlName="password">
+                @let password=loginForm.get('password');
+                @if(password?.touched) {
+                @if(password?.hasError('required')){
+                <p class="alert alert-danger fw-medium mt-2" role="alert">password is required</p>
+                }
+                @else if (password?.hasError('pattern')) {
+                <p class="alert alert-danger fw-medium mt-2" role="alert">password must be strar with capital lettter
+                    and be at least 7 characters .it can contain numbers and letters</p>
+                }
+                }
+            </div>
+          
+       
+
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <button class="btn text-white px-4 rounded-3" type="submit">login</button>
+                </div>
+                <div>
+                    <span class="me-2">don`t have account</span>
+                    <a class="register text-decoration-none fw-bold" routerLink="/register">Register</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

@@ -1,0 +1,82 @@
+<section class="w-50 m-auto my-5">
+    <div class="container">
+        <h2 class="text-center mb-3">Register Now</h2>
+        <form [formGroup]="registerForm" (ngSubmit)="submit()">
+            <div class="mb-3">
+                <label for="name" class="form-label">name</label>
+                <input type="name" class="form-control" id="name" formControlName="name">
+                @let name=registerForm.get('name');
+                @if(name?.touched) {
+                @if(name?.hasError('required')){
+                <p class="alert alert-danger fw-medium mt-2" role="alert">name is required</p>
+                }
+                @else if (name?.hasError('minlength')) {
+                <p class="alert alert-danger fw-medium mt-2" role="alert">name must be greater than 3 charactrs</p>
+                }
+                }
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">email</label>
+                <input type="email" class="form-control" id="email" formControlName="email">
+                @let email=registerForm.get('email');
+                @if(email?.touched) {
+                @if(email?.hasError('required')){
+                <p class="alert alert-danger fw-medium mt-2" role="alert">email is required</p>
+                }
+                @else if (email?.hasError('email')) {
+                <p class="alert alert-danger fw-medium mt-2" role="alert">email must be valid</p>
+                }
+                }
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">password</label>
+                <input type="password" class="form-control" id="password" formControlName="password">
+                @let password=registerForm.get('password');
+                @if(password?.touched) {
+                @if(password?.hasError('required')){
+                <p class="alert alert-danger fw-medium mt-2" role="alert">password is required</p>
+                }
+                @else if (password?.hasError('pattern')) {
+                <p class="alert alert-danger fw-medium mt-2" role="alert">password must be strar with capital lettter
+                    and be at least 7 characters .it can contain numbers and letters</p>
+                }
+                }
+            </div>
+            <div class="mb-3">
+                <label for="age" class="form-label">age</label>
+                <input type="number" class="form-control" id="age" formControlName="age">
+                @let age=registerForm.get('age');
+                @if(age?.touched) {
+                @if(age?.hasError('required')){
+                <p class="alert alert-danger fw-medium mt-2" role="alert">age is required</p>
+                }
+                @else if (age?.hasError('pattern')) {
+                <p class="alert alert-danger fw-medium mt-2" role="alert">age must be between 10 and 80</p>
+                }
+                }
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">phone</label>
+                <input type="tel" class="form-control" id="phone" formControlName="phone">
+                @let phone=registerForm.get('phone');
+                @if(phone?.touched) {
+                @if(phone?.hasError('required')){
+                <p class="alert alert-danger fw-medium mt-2" role="alert">phone is required</p>
+                }
+                @else if (phone?.hasError('pattern')) {
+                <p class="alert alert-danger fw-medium mt-2" role="alert">must be egyptain phone number</p>
+                }
+                }
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <button class="btn text-white px-4 rounded-3" type="submit">Register</button>
+                </div>
+                <div>
+                    <span class="me-2">already have account</span>
+                    <a class="login text-decoration-none fw-bold" routerLink="/login">login</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
